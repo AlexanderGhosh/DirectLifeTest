@@ -17,6 +17,7 @@ namespace DirectLifeTest
 
             foreach (char c in a)
             {
+                if (c == '"') continue;
                 // deducts 96 because 'a' holds the value of 97 in the ascii table and we want it to have the value of 1
                 // given all lowercase letters are listed in order sequentialy this will convert all letters to its location in the alphabet
                 total += c - 96;
@@ -46,14 +47,14 @@ namespace DirectLifeTest
                         // exits if no text found
                         return;
                     }
-                    allNames = text.Split("\",\""); // removes the dilimeters and all but the first and last "
+                    allNames = text.Split(","); // removes the dilimeters and all but the first and last "
 
-                    int size = allNames.Length;
-                    int lastIndex = size - 1; // just for my conviniance
+                    // int size = allNames.Length;
+                    // int lastIndex = size - 1; // just for my conviniance
 
                     // replaces ernouiouse "
-                    allNames[0] = allNames[0].TrimStart('"'); // doesnt do replace because unless the word contains charaters out side of the english alphabet there will be no other occurances
-                    allNames[lastIndex] = allNames[lastIndex].TrimEnd('"');
+                    // allNames[0] = allNames[0].TrimStart('"'); // doesnt do replace because unless the word contains charaters out side of the english alphabet there will be no other occurances
+                    // allNames[lastIndex] = allNames[lastIndex].TrimEnd('"');
 
                     //foreach (string a in allNames)
                     //{
