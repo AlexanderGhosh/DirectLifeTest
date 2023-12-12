@@ -35,7 +35,8 @@ namespace DirectLifeTest
                 string FilePath = $".\\names.txt";
 
                 // maps the word to the ammount of times it was seen
-                SortedDictionary<string, int> sorted = [];
+                // SortedDictionary<string, int> sorted = [];
+                string[] allNames;
 
                 using (var file = new StreamReader(FilePath)) // this will open the file for reading and closes it at the end of the "using" block
                 {
@@ -45,28 +46,34 @@ namespace DirectLifeTest
                         // exits if no text found
                         return;
                     }
-                    var split = text.Split("\",\""); // removes the dilimeters and all but the first and last "
+                    allNames = text.Split("\",\""); // removes the dilimeters and all but the first and last "
 
-                    int size = split.Length;
+                    int size = allNames.Length;
                     int lastIndex = size - 1; // just for my conviniance
 
                     // replaces ernouiouse "
-                    split[0] = split[0].TrimStart('"'); // doesnt do replace because unless the word contains charaters out side of the english alphabet there will be no other occurances
-                    split[lastIndex] = split[lastIndex].TrimEnd('"');
+                    allNames[0] = allNames[0].TrimStart('"'); // doesnt do replace because unless the word contains charaters out side of the english alphabet there will be no other occurances
+                    allNames[lastIndex] = allNames[lastIndex].TrimEnd('"');
 
-                    foreach (string a in split)
-                    {
-                        if (!sorted.TryAdd(a, 1))
-                        {
-                            ++sorted[a];
-                        }
-                    }
+                    //foreach (string a in allNames)
+                    //{
+                    //    if (!sorted.TryAdd(a, 1))
+                    //    {
+                    //        ++sorted[a];
+                    //    }
+                    //}
                 }
+                Array.Sort(allNames);
+
                 int total = 0;
                 int idx = 0;
-                foreach (var word in sorted)
+                // foreach (var word in sorted)
+                // {
+                //     total += getValue(word.Key) * word.Value * ++idx;
+                // }
+                foreach (var word in allNames)
                 {
-                    total += getValue(word.Key) * word.Value * ++idx;
+                    total += getValue(word) * ++idx;
                 }
 
                 // Console.WriteLine($"The total value of the file is: {total}");
