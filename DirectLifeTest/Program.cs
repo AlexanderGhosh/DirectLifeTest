@@ -2,9 +2,14 @@
 {
     internal class Program
     {
-        static void Main(string[] args)
+        private const string FilePath = "";
+
+        private static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            foreach (string line in File.ReadAllLines(FilePath))
+            {
+                Console.WriteLine(line);
+            }
         }
     }
 }
